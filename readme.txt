@@ -6,6 +6,7 @@ let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 let mongoUrlLocal = "mongodb://admin:password@mongodb";
 
 commands to run
+-------------------------------------
 nodemon index.js
 
 docker build -t dsahoo165/node_api_mongo .
