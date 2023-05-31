@@ -59,7 +59,7 @@ app.get("/users-array", (req, res, next) => {
      ]);
 });
 
-app.get("/test", (req, res, next) => {
+app.get("/", (req, res, next) => {
     res.json(["Tony", "Lisa", "Michael", "Ginger", "Food"]);
 });
 
