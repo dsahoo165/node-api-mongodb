@@ -5,15 +5,15 @@ let MongoClient = require('mongodb').MongoClient;
 
 // use when starting application locally
 //let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
+let mongoUrlLocal = "mongodb://admin:password@3.85.119.156:27017";
 
 // use when starting application as docker container
-let mongoUrlLocal = "mongodb://admin:password@mongodb";
+//let mongoUrlLocal = "mongodb://admin:password@mongodb";
 
 
 // pass these options to mongo client connect request to avoid DeprecationWarning for current Server Discovery and Monitoring engine
 let mongoClientOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
-// "user-account" in demo with docker. "my-db" in demo with docker-compose
 let databaseName = "food";
 
 
@@ -27,6 +27,22 @@ app.use(bodyParser.json());
  
 
 var fs = require("fs");
+
+// app.get('/createdb', function (req, res) {
+//    let response = {};
+//    let url = mongoUrlLocal + "/" + databaseName;
+//    console.log(url, ':url')
+//    MongoClient.connect(url, function (err, db) {
+//       if (err) throw err;
+//       console.log("Database created!");
+//       response = result;
+//       db.close();
+//       // Send response
+//       res.send('Database created');
+//    });
+
+// });
+
 
 app.get('/users', function (req, res) {
    fs.readFile( __dirname + "/" + "users.json", 'utf8', function (err, data) {
