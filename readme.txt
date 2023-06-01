@@ -20,5 +20,12 @@ docker container run -it -p 8081:8081 -d --network mongo-network --name node-api
 
 
 Docker compose:
+
+#For older version
 docker-compose -f dc-website.yaml up
 docker-compose -f dc-website.yaml down
+
+#For new version
+docker compose up -d
+docker compose down
+Note: docker-compose.yml file should be the current folder
