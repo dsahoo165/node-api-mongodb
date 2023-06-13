@@ -5,7 +5,7 @@ let MongoClient = require('mongodb').MongoClient;
 
 // use when starting application locally
 //let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
-let mongoUrlLocal = "mongodb://admin:password@54.210.171.205:27017";
+let mongoUrlLocal = "mongodb://admin:password@44.201.77.28:27017";
 
 // use when starting application as docker container
 //let mongoUrlLocal = "mongodb://admin:password@mongodb";

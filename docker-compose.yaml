@@ -1,36 +1,10 @@
 version: '3'
 services:
-  # my-app:
-  # image: ${docker-registry}/my-app:1.0
-  # ports:
-  # - 3000:3000
-  mongodb:
-    image: mongo
+  ui-app:
+    image: ${IMAGE}:${TAG}
     ports:
-      - 27017:27017
+      - ${PORT_TO_RUN}:80
     environment:
-      - MONGO_INITDB_ROOT_USERNAME=admin
-      - MONGO_INITDB_ROOT_PASSWORD=password
-    # volumes:
-    #   - mongo-data:/data/db
-  mongo-express:
-    image: mongo-express
-    restart: always # fixes MongoNetworkError when mongodb is not ready when mongo-express starts
-    ports:
-      - 8082:8081
-    environment:
-      - ME_CONFIG_MONGODB_ADMINUSERNAME=admin
-      - ME_CONFIG_MONGODB_ADMINPASSWORD=password
-      - ME_CONFIG_MONGODB_SERVER=mongodb
-  node-api-mongo:
-    image: dsahoo165/node_api_mongo
-    restart: always # fixes when there is some api error
-    ports:
-      - 8081:8081
-  dockerangular:
-    image: dsahoo165/dockerangular    
-    ports:
-      - 8083:80          
-# volumes:
-#   mongo-data:
-#     driver: local
+      - TAG=${TAG}
+      - IMAGE=${IMAGE}
+      - PORT_TO_RUN=${PORT_TO_RUN}

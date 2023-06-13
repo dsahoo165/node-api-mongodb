@@ -13,7 +13,8 @@ To run in local:
 nodemon index.js
 
 To create the image:
-docker build -t dsahoo165/node_api_mongo .
+docker build -t dsahoo165/node_api_mongo:1.1 .
+docker push dsahoo165/node_api_mongo:1.1
 
 To run the image in local:
 docker container run -it -p 8081:8081 -d --network mongo-network --name node-api-mongo dsahoo165/node_api_mongo
