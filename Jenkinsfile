@@ -21,11 +21,12 @@ pipeline {
                 skipDefaultCheckout true
             }
             steps {
+               
+                
+                 dir("workspace"){
                 unstash 'build-artifacts'
                 sh "ls"
                 sh 'pwd'
-                
-                 dir("workspace"){
                      sh """
 		        ls
                         docker images
