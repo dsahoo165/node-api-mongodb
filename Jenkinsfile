@@ -2,40 +2,63 @@ pipeline {
     agent any
 
     stages {
-        stage('Create Image') {            
+         stage('Prepare') {
             steps {
-                sh """
-                pwd
-                ls
-                docker images
-                docker build -t dsahoo165/node_api_mongo:${env.BUILD_NUMBER} .
-                docker images
-                """
-		        //withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {                
-                //     sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'                    
-                    // #Commented to avoid un-necessary push
-                     //sh "docker push dsahoo165/node_api_mongo:${env.BUILD_NUMBER}"
-                     
-                //}
-                     
-            }            
-        }
-        stage('Run Image') {
-            steps {  
-                sh """
-                docker ps                 
-                docker compose down
-                
-                export IMAGE=dsahoo165/node_api_mongo
-                export TAG=${env.BUILD_NUMBER}
-                export PORT_TO_RUN=8081
-                docker compose up -d
-                
-                docker ps
-                """
+                // Define the label for the Windows agent
+                script {
+                    agentLabel = ' LinuxNode-ProdServer'
+                }
+                sh 'pwd'
+                sh "ls"
+                stash name: 'build-artifacts', includes: '**/*', excludes: 'workspace**'                
             }
         }
+        stage('Create Image') {
+            agent {                
+                label agentLabel
+            }
+            options {
+                skipDefaultCheckout true
+            }
+            steps {
+                unstash 'build-artifacts'
+                sh "ls"
+                sh 'pwd'
+                
+                 dir("workspace"){
+                     sh """
+		        ls
+                        docker images
+			docker build -t dsahoo165/node_api:${env.BUILD_NUMBER} .
+			docker images
+                        """
+		 }
+            }
+        }
+		
+		stage('Run Image') {
+            agent {                
+                label agentLabel
+            }
+            options {
+                skipDefaultCheckout true
+            }
+            steps {               
+                
+                 dir("workspace"){
+                     sh """
+			docker ps                 
+			docker-compose down
 
-        
+			export IMAGE=dsahoo165/node_api
+			export TAG=${env.BUILD_NUMBER}
+			export PORT_TO_RUN=8081
+			docker-compose up -d
+
+			docker ps
+                	"""
+                 }
+            }
+        }
     }
 }
