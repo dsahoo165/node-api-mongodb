@@ -1,3 +1,4 @@
+pipeline {
 agent any
 
     stages {
@@ -37,3 +38,4 @@ agent any
 
     }
 
+}
