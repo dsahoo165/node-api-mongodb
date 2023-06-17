@@ -64,17 +64,11 @@ agent any
 			 sh 'ls'
 			 sh 'pwd'
                            sh """
-			sudo docker ps 
-   			
-      			export IMAGE=dsahoo165/node_api_mongo
-	                export TAG=${env.BUILD_NUMBER}
-	                export PORT_TO_RUN=8081
-			sudo docker compose down
-                
-	                export IMAGE=dsahoo165/node_api_mongo
-	                export TAG=${env.BUILD_NUMBER}
-	                export PORT_TO_RUN=8081
-	                sudo docker compose up -d
+			sudo docker ps
+                     
+		      	sudo IMAGE=dsahoo165/node_api_mongo TAG=${env.BUILD_NUMBER} PORT_TO_RUN=8081 docker compose down
+	 		sudo IMAGE=dsahoo165/node_api_mongo TAG=${env.BUILD_NUMBER} PORT_TO_RUN=8081 docker compose up -d
+	               
 			sudo docker ps
                 	"""
 		 }
