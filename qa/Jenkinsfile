@@ -47,17 +47,19 @@ agent any
                 unstash 'build-artifacts'
                 sh 'ls'
                 sh 'pwd'
-                   sh """
-                      sh 'ssh ec2-user@54.89.236.78 "docker ps"'
-                			docker ps                 
-                			docker compose down
-                    
-    	                export IMAGE=dsahoo165/node_api_mongo
-    	                export TAG=${env.BUILD_NUMBER}
+	       //ssh ec2-user@54.89.236.78 "docker ps"
+                   sh """      			              
+                			
+                    ssh ec2-user@54.89.236.78 'bash -s' <<EOF			
+			docker ps
+			docker compose down			
+			
+			export TAG=${env.BUILD_NUMBER}
     	                export PORT_TO_RUN=8083
-    	                docker compose up -d
-                     
-    			            docker ps
+    	                docker compose up -d                     
+    		        docker ps
+			EOF   	                
+    	               
                 	"""
                     
                 }
