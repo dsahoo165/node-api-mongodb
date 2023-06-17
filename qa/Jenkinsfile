@@ -24,8 +24,7 @@ agent any
         }
         stage('Run Image') {
             steps {  
-	dir("workspace"){
-		unstash 'build-artifacts'
+	dir("workspace"){		
                 sh """
                 docker ps   
 		
@@ -61,6 +60,9 @@ agent any
             }
             steps {                
                  dir("workspace"){
+			 unstash 'build-artifacts'
+			 sh 'ls'
+			 sh 'pwd'
                            sh """
 			docker ps                 
 			docker compose down
