@@ -28,7 +28,7 @@ agent any
                 
                 export IMAGE=dsahoo165/node_api_mongo
                 export TAG=${env.BUILD_NUMBER}
-                export PORT_TO_RUN=8070
+                export PORT_TO_RUN=8081
                 docker compose up -d
 
                 docker ps

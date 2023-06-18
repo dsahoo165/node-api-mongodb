@@ -5,7 +5,9 @@ let MongoClient = require('mongodb').MongoClient;
 
 // use when starting application locally
 //let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
-let mongoUrlLocal = "mongodb://admin:password@54.174.65.70:27017";
+
+let mongoUrlLocal = "mongodb://admin:password@54.173.237.237:27017";
+
 
 // use when starting application as docker container
 //let mongoUrlLocal = "mongodb://admin:password@mongodb";
@@ -76,7 +78,7 @@ app.get("/users-array", (req, res, next) => {
 });
 
 app.get("/", (req, res, next) => {
-    res.json(["Tony", "Lisa", "Michael", "Ginger", "Food","Deepak Kumar Sahoo Prod"]);
+    res.json(["Tony", "Lisa", "Michael", "Ginger", "Food","Deepak Kumar Sahoo qa"]);
 });
 
 
