@@ -2,6 +2,7 @@ version: '3'
 services:
   ui-app:
     image: ${IMAGE}:${TAG}
+    restart: on-failure
     ports:
       - ${PORT_TO_RUN}:8081
     environment:
