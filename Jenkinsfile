@@ -4,7 +4,8 @@ agent any
     stages {
         stage('Create Image') {            
             steps {
-		
+		        cleanWs()
+		    
 	                sh """
 	                pwd
 	                ls
