@@ -28,7 +28,7 @@ agent any
                 sh """
                 docker ps   
 		
-                docker compose down
+                //docker compose down
                 
                 export IMAGE=dsahoo165/node_api_mongo
                 export TAG=${env.BUILD_NUMBER}
