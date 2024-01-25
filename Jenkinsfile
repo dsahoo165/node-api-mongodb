@@ -4,8 +4,6 @@ agent any
     stages {
         stage('Create Image') {            
             steps {
-		        cleanWs()
-		    
 	                sh """
 	                pwd
 	                ls
@@ -29,7 +27,7 @@ agent any
                 sh """
                 docker ps   
 		
-                
+                docker compose down
                 
                 export IMAGE=dsahoo165/node_api_mongo
                 export TAG=${env.BUILD_NUMBER}
